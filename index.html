@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creperia Lo de Luis · San Martín de los Andes</title>
+<meta name="description" content="La única creperia de San Martín de los Andes. Crepas dulces y saladas, papas fritas y combos. Av. San Martín 866, Market El Maitén.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1DE;
+    --batter:#F3E4C6;
+    --griddle:#241209;
+    --griddle-2:#341A0C;
+    --ink:#2B1B10;
+    --cherry:#B23327;
+    --cherry-dark:#8C2620;
+    --caramel:#C97A2B;
+    --gold:#E7B860;
+    --line: rgba(43,27,16,0.14);
+    --paper: #FFFDF7;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Sora', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    font-weight:700;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  section{position:relative;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,241,222,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1120px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--cherry);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--cherry);
+    flex-shrink:0;
+  }
+  .brand-mark svg{width:20px;height:20px;}
+  .brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;line-height:1.1;}
+  .brand-name span{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cherry-dark);margin-top:2px;}
+  nav.links{display:flex;gap:28px;align-items:center;}
+  nav.links a{
+    font-size:0.88rem;font-weight:600;text-decoration:none;color:var(--ink);
+    opacity:0.75;transition:opacity .2s ease;
+  }
+  nav.links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--cherry);color:var(--paper);
+    padding:9px 18px;border-radius:999px;font-size:0.85rem;font-weight:700;
+    text-decoration:none;white-space:nowrap;
+    box-shadow:0 4px 14px rgba(178,51,39,0.35);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(178,51,39,0.45);}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(120% 160% at 15% 0%, #3A1E0E 0%, var(--griddle) 55%, var(--griddle-2) 100%);
+    color:var(--cream);
+    overflow:hidden;
+    padding:88px 0 96px;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .hero .eyebrow{color:var(--gold);}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(231,184,96,0.35);
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero-tag .dot{width:7px;height:7px;border-radius:50%;background:#7BC67E;box-shadow:0 0 0 3px rgba(123,198,126,0.2);}
+  #status-text{font-family:'Space Mono',monospace;font-size:0.76rem;letter-spacing:0.03em;}
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.04;color:#FBF1DE;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--gold);
+  }
+  .hero p.lede{
+    font-size:1.08rem;color:rgba(251,241,222,0.78);
+    max-width:46ch;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;border-radius:999px;
+    font-weight:700;font-size:0.95rem;text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--cherry);color:#fff;box-shadow:0 10px 24px rgba(178,51,39,0.4);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(178,51,39,0.5);}
+  .btn-ghost{background:transparent;color:var(--cream);border-color:rgba(251,241,222,0.35);}
+  .btn-ghost:hover{background:rgba(251,241,222,0.08);border-color:rgba(251,241,222,0.6);}
+
+  /* Crepe fold visual */
+  .fold-stage{position:relative;aspect-ratio:1/1;max-width:400px;margin:0 auto;}
+  .fold-plate{
+    position:absolute;inset:6%;
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, #4a2812, #1c0d05 72%);
+    box-shadow:inset 0 0 0 1px rgba(231,184,96,0.18), 0 30px 60px rgba(0,0,0,0.45);
+  }
+  .fold-plate::after{
+    content:"";position:absolute;inset:9%;border-radius:50%;
+    border:1px dashed rgba(231,184,96,0.28);
+  }
+  .crepe{
+    position:absolute;inset:16%;border-radius:50%;
+    background:conic-gradient(from 210deg, #F3D9A2, #E7B860 30%, #F3D9A2 55%, #D9A85C 80%, #F3D9A2);
+    box-shadow:0 18px 40px rgba(0,0,0,0.35);
+    animation:pour 4.5s ease-in-out infinite;
+    transform-origin:center;
+  }
+  .crepe::before{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 60% 65%, rgba(178,51,39,0.16), transparent 55%),
+               radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 40%);
+  }
+  .crepe-quarter{
+    position:absolute;width:50%;height:50%;
+    background:linear-gradient(135deg,#F0D19A,#D9A559);
+    transform-origin:0% 0%;
+  }
+  @keyframes pour{
+    0%,100%{transform:scale(1) rotate(0deg);}
+    50%{transform:scale(0.97) rotate(2deg);}
+  }
+  .steam{position:absolute;bottom:60%;left:50%;width:2px;height:60px;
+    background:linear-gradient(to top, rgba(251,241,222,0.5), transparent);
+    filter:blur(2px);animation:rise 3s ease-in-out infinite;}
+  .steam:nth-child(2){left:42%;animation-delay:.6s;height:44px;}
+  .steam:nth-child(3){left:58%;animation-delay:1.2s;height:50px;}
+  @keyframes rise{0%{opacity:0;transform:translateY(0) scaleY(1);}30%{opacity:.7;}100%{opacity:0;transform:translateY(-40px) scaleY(1.4);}}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head .eyebrow{color:var(--cherry-dark);margin-bottom:12px;display:block;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:14px;}
+  .section-head p{color:rgba(43,27,16,0.7);font-size:1.02rem;max-width:56ch;}
+
+  /* ---------- MENU ---------- */
+  #carta{padding:100px 0 60px;}
+  .menu-grid{display:flex;flex-direction:column;gap:16px;}
+  .menu-cat{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--paper);
+    overflow:hidden;
+    transition:border-color .2s ease;
+  }
+  .menu-cat[open]{border-color:rgba(178,51,39,0.35);}
+  .menu-cat summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 26px;gap:20px;
+  }
+  .menu-cat summary::-webkit-details-marker{display:none;}
+  .cat-title{display:flex;align-items:center;gap:16px;}
+  .cat-icon{
+    width:46px;height:46px;border-radius:14px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--batter);color:var(--cherry-dark);
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;
+  }
+  .cat-title h3{font-size:1.28rem;}
+  .cat-title .cat-sub{
+    font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.06em;
+    color:rgba(43,27,16,0.55);text-transform:uppercase;margin-top:4px;display:block;
+  }
+  .chevron{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    transition:transform .3s ease, background .2s ease;
+  }
+  .menu-cat[open] .chevron{transform:rotate(45deg);background:var(--cherry);border-color:var(--cherry);}
+  .menu-cat[open] .chevron svg{stroke:#fff;}
+  .cat-body{padding:0 26px 26px;border-top:1px dashed var(--line);}
+  .dish-list{margin-top:18px;display:grid;gap:18px;}
+  .dish{
+    display:flex;justify-content:space-between;gap:20px;
+    padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .dish:last-child{border-bottom:none;padding-bottom:0;}
+  .dish-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;margin-bottom:4px;}
+  .dish-desc{font-size:0.92rem;color:rgba(43,27,16,0.62);max-width:52ch;}
+
+  /* build-your-own crepe */
+  .build{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+  .build-col{background:var(--cream);border-radius:16px;padding:18px 18px 20px;border:1px solid var(--line);}
+  .build-col .eyebrow{color:var(--cherry-dark);display:block;margin-bottom:10px;}
+  .build-col ul{margin:0;padding:0;list-style:none;}
+  .build-col li{
+    font-size:0.94rem;padding:7px 0;border-bottom:1px dashed var(--line);
+  }
+  .build-col li:last-child{border-bottom:none;}
+  .build-plus{
+    display:none;
+  }
+
+  /* papas + combos tags */
+  .tag-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .tag{
+    font-family:'Space Mono',monospace;font-size:0.76rem;font-weight:700;
+    padding:7px 14px;border-radius:999px;background:var(--batter);color:var(--ink);
+  }
+  .tag.hot{background:var(--cherry);color:#fff;}
+
+  /* ---------- HOURS + LOCATION ---------- */
+  #info{padding:60px 0 100px;}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:34px;
+  }
+  .hours-list{margin-top:22px;display:grid;gap:0;}
+  .hours-row{
+    display:flex;justify-content:space-between;padding:11px 0;
+    border-bottom:1px solid var(--line);font-size:0.95rem;
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{font-weight:600;}
+  .hours-row.today{
+    background:var(--batter);margin:0 -14px;padding:11px 14px;border-radius:10px;border-bottom:none;
+  }
+  .hours-row .time{font-family:'Space Mono',monospace;font-size:0.88rem;}
+  .badge-truck{
+    margin-top:20px;display:flex;align-items:center;gap:10px;
+    background:#F6E3C8;border:1px solid rgba(201,122,43,0.3);
+    padding:12px 16px;border-radius:14px;font-size:0.86rem;color:var(--ink);
+  }
+  .badge-truck b{color:var(--cherry-dark);}
+
+  .map-frame{
+    border-radius:16px;overflow:hidden;border:1px solid var(--line);
+    height:220px;margin-top:20px;
+  }
+  .map-frame iframe{width:100%;height:100%;border:0;}
+  .addr-line{display:flex;gap:12px;margin-top:18px;align-items:flex-start;}
+  .addr-line svg{flex-shrink:0;margin-top:3px;color:var(--cherry);}
+  .addr-line b{display:block;font-family:'Fraunces',serif;font-size:1.02rem;}
+  .addr-line span{color:rgba(43,27,16,0.65);font-size:0.92rem;}
+
+  /* ---------- CONTACT ---------- */
+  #pedir{
+    background:linear-gradient(180deg, var(--griddle) 0%, var(--griddle-2) 100%);
+    color:var(--cream);padding:90px 0;
+  }
+  #pedir .wrap{text-align:center;display:flex;flex-direction:column;align-items:center;}
+  #pedir h2{font-size:clamp(2rem,4vw,2.9rem);color:#FBF1DE;max-width:16ch;margin-bottom:16px;}
+  #pedir p{color:rgba(251,241,222,0.72);max-width:48ch;margin-bottom:36px;}
+  .social-row{display:flex;gap:14px;margin-top:36px;}
+  .social-btn{
+    width:46px;height:46px;border-radius:50%;
+    border:1px solid rgba(251,241,222,0.3);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .social-btn:hover{background:rgba(251,241,222,0.1);transform:translateY(-2px);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--cream);padding:36px 0;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  footer p{font-size:0.82rem;color:rgba(43,27,16,0.55);margin:0;}
+
+  @media (max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero{padding:56px 0 64px;text-align:left;}
+    .fold-stage{order:-1;max-width:260px;margin:0 0 20px;}
+    nav.links{display:none;}
+    .burger{display:block;}
+    .info-grid{grid-template-columns:1fr;}
+    .build{grid-template-columns:1fr;}
+    .card{padding:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c2-4 5-7 8-7s6 3 8 7c-2 4-5 7-8 7s-6-3-8-7Z" stroke="#FBF1DE" stroke-width="1.6"/><circle cx="12" cy="12" r="2.3" fill="#FBF1DE"/></svg>
+      </div>
+      <div class="brand-name">Lo de Luis<span>Creperia · SMA</span></div>
+    </div>
+    <nav class="links">
+      <a href="#carta">Carta</a>
+      <a href="#info">Horarios</a>
+      <a href="#info">Cómo llegar</a>
+      <a href="#pedir">Contacto</a>
+    </nav>
+    <a class="nav-cta" id="nav-wa" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">San Martín de los Andes</span>
+      <div class="hero-tag">
+        <span class="dot"></span>
+        <span id="status-text">Calculando horario…</span>
+      </div>
+      <h1>La única <em>creperia</em><br>de San Martín<br>de los Andes.</h1>
+      <p class="lede">Crepas dulces y saladas hechas al momento, papas fritas y combos. Te esperamos en Av. San Martín 866, dentro de Market El Maitén.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="hero-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.31-1.39a9.87 9.87 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.15.82.84-3.07-.2-.32a8.19 8.19 0 0 1-1.25-4.21c0-4.53 3.69-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.4 5.8c0 4.53-3.69 8.11-8.22 8.11Zm4.51-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          Pedir por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#carta">Ver la carta</a>
+      </div>
+    </div>
+    <div class="fold-stage">
+      <div class="fold-plate"></div>
+      <div class="steam"></div>
+      <div class="steam"></div>
+      <div class="steam"></div>
+      <div class="crepe"></div>
+    </div>
+  </div>
+</section>
+
+<section id="carta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">La carta</span>
+      <h2>Crepas, papas y combos</h2>
+      <p>Elegí una categoría para ver los productos. Tocá para desplegar.</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <details class="menu-cat" open>
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">C</div>
+            <div>
+              <h3>Crepas Clásicas</h3>
+              <span class="cat-sub">Saladas</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <div class="dish-list">
+            <div class="dish">
+              <div><div class="dish-name">Pollo al Curry</div><div class="dish-desc">Pollo al curry, queso fundido, lechuga, tomate, palta, salsa alioli.</div></div>
+            </div>
+            <div class="dish">
+              <div><div class="dish-name">Bondiola a la Cerveza</div><div class="dish-desc">Bondiola a la cerveza, queso fundido, rúcula, tomate, salsa barbacoa.</div></div>
+            </div>
+            <div class="dish">
+              <div><div class="dish-name">Carne Desmechada</div><div class="dish-desc">Carne desmechada, queso fundido, lechuga, tomate, salsa alioli.</div></div>
+            </div>
+            <div class="dish">
+              <div><div class="dish-name">Salteado de Vegetales</div><div class="dish-desc">Vegetales de estación, queso fundido, espinaca, salsa alioli.</div></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="menu-cat">
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">E</div>
+            <div>
+              <h3>Crepas Especiales</h3>
+              <span class="cat-sub">Saladas</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <div class="dish-list">
+            <div class="dish"><div><div class="dish-name">Crepa Burguer</div><div class="dish-desc">Carne desmechada, queso fundido, queso cheddar, bacon, pepinillos, salsa tasty.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Carne Criolla</div><div class="dish-desc">Carne en tiras con cebolla y morrones, queso fundido, 2 huevos, salsa alioli.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Avocado Crep</div><div class="dish-desc">Pollo o carne desmechada, queso fundido, palta, huevo duro, salsa alioli.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Pollo al Verdeo</div><div class="dish-desc">Pollo a la crema con verdeo, queso fundido, espinaca fresca, salsa alioli.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Espinaca y Salsa Blanca</div><div class="dish-desc">Espinaca fresca, salsa blanca, queso fundido, huevo, salsa alioli.</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="menu-cat">
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">S</div>
+            <div>
+              <h3>Crepas Simples</h3>
+              <span class="cat-sub">Saladas</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <div class="dish-list">
+            <div class="dish"><div><div class="dish-name">Jamón y Queso</div><div class="dish-desc">Queso fundido, jamón cocido, huevo, salsa alioli.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Jamón Crudo & Queso</div><div class="dish-desc">Jamón crudo, queso fundido, rúcula, tomate, salsa alioli.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Caprese</div><div class="dish-desc">Queso fundido, tomate, albahaca, rúcula, salsa alioli.</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="menu-cat">
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">D</div>
+            <div>
+              <h3>Crepas Dulces</h3>
+              <span class="cat-sub">Armá la tuya</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <p class="dish-desc" style="margin-top:18px;">Elegí una base + un topping + una fruta.</p>
+          <div class="build">
+            <div class="build-col">
+              <span class="eyebrow">Base</span>
+              <ul>
+                <li>Nutella</li>
+                <li>Dulce de Leche</li>
+                <li>Pasta de Maní</li>
+              </ul>
+            </div>
+            <div class="build-col">
+              <span class="eyebrow">Topping</span>
+              <ul>
+                <li>Oreo</li>
+                <li>Chocolinas</li>
+                <li>Granola</li>
+                <li>Coco Rayado</li>
+              </ul>
+            </div>
+            <div class="build-col">
+              <span class="eyebrow">Fruta</span>
+              <ul>
+                <li>Banana</li>
+                <li>Frutilla</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="menu-cat">
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">P</div>
+            <div>
+              <h3>Papas Fritas</h3>
+              <span class="cat-sub">Para acompañar</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <div class="dish-list">
+            <div class="dish"><div><div class="dish-name">Papas Simples</div><div class="dish-desc">Chicas o grandes.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Papas Especiales</div><div class="dish-desc">Chicas o grandes. Incluyen cheddar, panceta y verdeo.</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="menu-cat">
+        <summary>
+          <div class="cat-title">
+            <div class="cat-icon">🥤</div>
+            <div>
+              <h3>Combos</h3>
+              <span class="cat-sub">Crepa + papas + bebida</span>
+            </div>
+          </div>
+          <div class="chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </summary>
+        <div class="cat-body">
+          <div class="dish-list">
+            <div class="dish"><div><div class="dish-name">Combo Crepas Simples</div><div class="dish-desc">Una crepa simple + papas + bebida.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Combo Crepas Clásicas</div><div class="dish-desc">Una crepa clásica + papas + bebida.</div></div></div>
+            <div class="dish"><div><div class="dish-name">Combo Crepas Especiales</div><div class="dish-desc">Una crepa especial + papas + bebida.</div></div></div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Horarios y ubicación</span>
+      <h2>Te esperamos</h2>
+    </div>
+    <div class="info-grid">
+      <div class="card">
+        <h3>Horario de atención</h3>
+        <div class="hours-list" id="hours-list"></div>
+        <div class="badge-truck">
+          🚐 <span><b>Food truck:</b> cerrado hasta octubre.</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Dónde estamos</h3>
+        <div class="addr-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div>
+            <b>Av. San Martín 866</b>
+            <span>Market El Maitén · San Martín de los Andes, Neuquén</span>
+          </div>
+        </div>
+        <div class="map-frame">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Creperia+Lo+de+Luis+Av.+San+Martin+866+San+Martin+de+los+Andes&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pedir">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--gold);">Hacé tu pedido</span>
+    <h2>Pedí tu crepa y no pienses más.</h2>
+    <p>Escribinos por WhatsApp o seguinos en Instagram para ver las novedades del día.</p>
+    <a class="btn btn-primary" id="cta-wa" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.31-1.39a9.87 9.87 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.15.82.84-3.07-.2-.32a8.19 8.19 0 0 1-1.25-4.21c0-4.53 3.69-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.4 5.8c0 4.53-3.69 8.11-8.22 8.11Zm4.51-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <div class="social-row">
+      <a class="social-btn" href="https://www.instagram.com/lodeluis_sma/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF1DE" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year"></span> Creperia Lo de Luis · Av. San Martín 866, San Martín de los Andes</p>
+    <p>Hecho con 🥞 en la Patagonia</p>
+  </div>
+</footer>
+
+<script>
+  // WhatsApp links
+  const waNumber = "5492944242906";
+  const waMsg = encodeURIComponent("¡Hola! Quiero hacer un pedido en Lo de Luis 🥞");
+  const waLink = `https://wa.me/${waNumber}?text=${waMsg}`;
+  ["nav-wa","hero-wa","cta-wa"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = waLink;
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Hours data: 0=Sunday ... 6=Saturday (JS getDay convention)
+  const hours = {
+    0: {label:"Domingo", open:12, close:23},
+    1: {label:"Lunes", open:19, close:23},
+    2: {label:"Martes", open:12, close:23},
+    3: {label:"Miércoles", open:12, close:23},
+    4: {label:"Jueves", open:12, close:23},
+    5: {label:"Viernes", open:12, close:23},
+    6: {label:"Sábado", open:12, close:23},
+  };
+  const order = [1,2,3,4,5,6,0]; // Lunes -> Domingo display order
+
+  function pad(h){ return `${h}:00`; }
+
+  function renderHours(todayIdx){
+    const list = document.getElementById("hours-list");
+    list.innerHTML = "";
+    order.forEach(idx => {
+      const d = hours[idx];
+      const row = document.createElement("div");
+      row.className = "hours-row" + (idx === todayIdx ? " today" : "");
+      row.innerHTML = `<span class="day">${d.label}</span><span class="time">${pad(d.open)} – ${pad(d.close)}</span>`;
+      list.appendChild(row);
+    });
+  }
+
+  function getBAparts(){
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone:'America/Argentina/Buenos_Aires',
+      weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
+    });
+    const parts = fmt.formatToParts(new Date());
+    const map = {};
+    parts.forEach(p => map[p.type] = p.value);
+    const weekdayMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    return {
+      day: weekdayMap[map.weekday],
+      hour: parseInt(map.hour,10),
+      minute: parseInt(map.minute,10)
+    };
+  }
+
+  function updateStatus(){
+    const {day, hour, minute} = getBAparts();
+    const today = hours[day];
+    const nowDec = hour + minute/60;
+    const isOpen = nowDec >= today.open && nowDec < today.close;
+    const statusEl = document.getElementById("status-text");
+    const dotEl = document.querySelector(".hero-tag .dot");
+    if(isOpen){
+      statusEl.textContent = `Abierto ahora · cierra a las ${pad(today.close)}`;
+      dotEl.style.background = "#7BC67E";
+    } else {
+      statusEl.textContent = `Cerrado ahora · abre a las ${pad(today.open)}`;
+      dotEl.style.background = "#D9705A";
+    }
+    renderHours(day);
+  }
+
+  updateStatus();
+  setInterval(updateStatus, 60000);
+</script>
+
+</body>
+</html>
