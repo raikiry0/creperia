@@ -64,13 +64,14 @@
   }
   .brand{display:flex;align-items:center;gap:10px;}
   .brand-mark{
-    width:38px;height:38px;border-radius:50%;
+    width:40px;height:40px;border-radius:50%;
     background:var(--cherry);
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--cherry);
     flex-shrink:0;
+    overflow:hidden;
   }
-  .brand-mark svg{width:20px;height:20px;}
+  .brand-mark img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
   .brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;line-height:1.1;}
   .brand-name span{display:block;font-family:'Space Mono',monospace;font-weight:400;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cherry-dark);margin-top:2px;}
   nav.links{display:flex;gap:28px;align-items:center;}
@@ -145,26 +146,16 @@
     content:"";position:absolute;inset:9%;border-radius:50%;
     border:1px dashed rgba(231,184,96,0.28);
   }
-  .crepe{
-    position:absolute;inset:16%;border-radius:50%;
-    background:conic-gradient(from 210deg, #F3D9A2, #E7B860 30%, #F3D9A2 55%, #D9A85C 80%, #F3D9A2);
-    box-shadow:0 18px 40px rgba(0,0,0,0.35);
-    animation:pour 4.5s ease-in-out infinite;
-    transform-origin:center;
+  .logo-hero{
+    position:absolute;inset:9%;border-radius:50%;
+    width:82%;height:82%;margin:auto;
+    object-fit:cover;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 0 6px rgba(231,184,96,0.16);
+    animation:float 4.5s ease-in-out infinite;
   }
-  .crepe::before{
-    content:"";position:absolute;inset:0;border-radius:50%;
-    background:radial-gradient(circle at 60% 65%, rgba(178,51,39,0.16), transparent 55%),
-               radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 40%);
-  }
-  .crepe-quarter{
-    position:absolute;width:50%;height:50%;
-    background:linear-gradient(135deg,#F0D19A,#D9A559);
-    transform-origin:0% 0%;
-  }
-  @keyframes pour{
-    0%,100%{transform:scale(1) rotate(0deg);}
-    50%{transform:scale(0.97) rotate(2deg);}
+  @keyframes float{
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-6px) scale(1.015);}
   }
   .steam{position:absolute;bottom:60%;left:50%;width:2px;height:60px;
     background:linear-gradient(to top, rgba(251,241,222,0.5), transparent);
@@ -320,7 +311,7 @@
   <div class="nav">
     <div class="brand">
       <div class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c2-4 5-7 8-7s6 3 8 7c-2 4-5 7-8 7s-6-3-8-7Z" stroke="#FBF1DE" stroke-width="1.6"/><circle cx="12" cy="12" r="2.3" fill="#FBF1DE"/></svg>
+        <img src="assets/logo.jpg" alt="Creperia Lo de Luis">
       </div>
       <div class="brand-name">Lo de Luis<span>Creperia · SMA</span></div>
     </div>
@@ -357,7 +348,7 @@
       <div class="steam"></div>
       <div class="steam"></div>
       <div class="steam"></div>
-      <div class="crepe"></div>
+      <img class="logo-hero" src="assets/logo.jpg" alt="Creperia Lo de Luis">
     </div>
   </div>
 </section>
