@@ -135,7 +135,8 @@
   .btn-ghost:hover{background:rgba(251,241,222,0.08);border-color:rgba(251,241,222,0.6);}
 
   /* Crepe fold visual */
-  .fold-stage{position:relative;aspect-ratio:1/1;max-width:400px;margin:0 auto;}
+  .fold-stage{position:relative;width:100%;max-width:400px;margin:0 auto;}
+  .fold-stage::before{content:"";display:block;padding-top:100%;}
   .fold-plate{
     position:absolute;inset:6%;
     border-radius:50%;
