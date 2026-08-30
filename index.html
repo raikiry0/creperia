@@ -222,25 +222,25 @@
   .cat-bg{
     position:absolute;inset:-15px;z-index:0;
     background-size:cover;background-position:center;
-    filter:saturate(1.1) brightness(0.9);
+    filter:saturate(1.2) brightness(1.12) contrast(1.05);
     transform:scale(1.06);
     pointer-events:none;
   }
   .cat-overlay{
     position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg, rgba(24,12,6,0.68), rgba(20,10,5,0.88) 45%, rgba(18,9,5,0.95));
+    background:linear-gradient(180deg, rgba(24,12,6,0.32), rgba(20,10,5,0.5) 45%, rgba(18,9,5,0.62));
     pointer-events:none;
   }
   .cat-inner{position:relative;z-index:2;padding-top:22px;}
-  .cat-inner .dish-name{color:#FBF1DE;}
-  .cat-inner .dish-desc{color:rgba(251,241,222,0.72);}
-  .cat-inner .dish{border-bottom-color:rgba(251,241,222,0.16);}
-  .cat-inner .eyebrow{color:var(--gold);}
-  .cat-inner p.dish-desc{color:rgba(251,241,222,0.78);}
+  .cat-inner .dish-name{color:#FBF1DE;text-shadow:0 1px 6px rgba(0,0,0,0.7);}
+  .cat-inner .dish-desc{color:rgba(251,241,222,0.85);text-shadow:0 1px 5px rgba(0,0,0,0.6);}
+  .cat-inner .dish{border-bottom-color:rgba(251,241,222,0.2);}
+  .cat-inner .eyebrow{color:var(--gold);text-shadow:0 1px 4px rgba(0,0,0,0.6);}
+  .cat-inner p.dish-desc{color:rgba(251,241,222,0.9);text-shadow:0 1px 5px rgba(0,0,0,0.6);}
   .cat-inner .build-col{
-    background:rgba(0,0,0,0.28);border-color:rgba(251,241,222,0.18);
+    background:rgba(0,0,0,0.4);border-color:rgba(251,241,222,0.22);
   }
-  .cat-inner .build-col li{color:rgba(251,241,222,0.85);border-bottom-color:rgba(251,241,222,0.14);}
+  .cat-inner .build-col li{color:rgba(251,241,222,0.92);border-bottom-color:rgba(251,241,222,0.16);text-shadow:0 1px 4px rgba(0,0,0,0.6);}
   .dish-list{margin-top:18px;display:grid;gap:18px;}
   .dish{
     display:flex;justify-content:space-between;gap:20px;
