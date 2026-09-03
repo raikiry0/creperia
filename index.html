@@ -289,23 +289,24 @@
   .card{
     background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:34px;
   }
-  .hours-list{margin-top:22px;display:grid;gap:0;}
-  .hours-row{
-    display:flex;justify-content:space-between;padding:11px 0;
-    border-bottom:1px solid var(--line);font-size:0.95rem;
+  .feedback-row{
+    display:flex;align-items:center;gap:16px;
+    padding:18px 0;border-bottom:1px solid var(--line);
+    text-decoration:none;color:var(--ink);
+    transition:transform .15s ease;
   }
-  .hours-row:last-child{border-bottom:none;}
-  .hours-row .day{font-weight:600;}
-  .hours-row.today{
-    background:var(--batter);margin:0 -14px;padding:11px 14px;border-radius:10px;border-bottom:none;
+  .feedback-row:first-of-type{margin-top:22px;}
+  .feedback-row:last-child{border-bottom:none;padding-bottom:0;}
+  .feedback-row:hover{transform:translateX(3px);}
+  .feedback-icon{
+    width:44px;height:44px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--batter);color:var(--cherry-dark);
   }
-  .hours-row .time{font-family:'Space Mono',monospace;font-size:0.88rem;}
-  .badge-truck{
-    margin-top:20px;display:flex;align-items:center;gap:10px;
-    background:#F6E3C8;border:1px solid rgba(201,122,43,0.3);
-    padding:12px 16px;border-radius:14px;font-size:0.86rem;color:var(--ink);
-  }
-  .badge-truck b{color:var(--cherry-dark);}
+  .feedback-text{display:flex;flex-direction:column;gap:2px;flex:1;}
+  .feedback-text b{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;}
+  .feedback-text span{font-size:0.86rem;color:rgba(43,27,16,0.6);}
+  .feedback-arrow{flex-shrink:0;color:rgba(43,27,16,0.35);}
 
   .map-frame{
     border-radius:16px;overflow:hidden;border:1px solid var(--line);
@@ -377,10 +378,6 @@
   <div class="wrap">
     <div>
       <span class="eyebrow">San Martín de los Andes</span>
-      <div class="hero-tag">
-        <span class="dot"></span>
-        <span id="status-text">Calculando horario…</span>
-      </div>
       <h1>La única <em>creperia</em><br>de San Martín<br>de los Andes.</h1>
       <p class="lede">Crepas dulces y saladas hechas al momento, papas fritas y combos. Te esperamos en Av. San Martín 866, dentro de Market El Maitén.</p>
       <div class="hero-actions">
@@ -596,16 +593,32 @@
 <section id="info">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Horarios y ubicación</span>
+      <span class="eyebrow">Sumate a la comunidad</span>
       <h2>Te esperamos</h2>
     </div>
     <div class="info-grid">
       <div class="card">
-        <h3>Horario de atención</h3>
-        <div class="hours-list" id="hours-list"></div>
-        <div class="badge-truck">
-          🚐 <span><b>Food truck:</b> cerrado hasta octubre.</span>
-        </div>
+        <h3>¡Gracias por elegirnos!</h3>
+        <a class="feedback-row" href="https://search.google.com/local/writereview?placeid=ChIJcaNUJnYOEZYRLzQDW90rKP8" target="_blank" rel="noopener">
+          <span class="feedback-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 17.3 6.2 20.5l1.1-6.5-4.7-4.6 6.5-.9L12 2.7l2.9 5.8 6.5.9-4.7 4.6 1.1 6.5Z" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="feedback-text">
+            <b>¿Te gustaron nuestras crepas?</b>
+            <span>Dejanos una reseña en Google</span>
+          </span>
+          <svg class="feedback-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="feedback-row" href="https://www.instagram.com/lodeluis_sma/" target="_blank" rel="noopener">
+          <span class="feedback-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </span>
+          <span class="feedback-text">
+            <b>Seguinos en Instagram</b>
+            <span>@lodeluis_sma</span>
+          </span>
+          <svg class="feedback-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
       <div class="card">
         <h3>Dónde estamos</h3>
@@ -682,18 +695,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
   function pad(h){ return `${h}:00`; }
 
-  function renderHours(todayIdx){
-    const list = document.getElementById("hours-list");
-    list.innerHTML = "";
-    order.forEach(idx => {
-      const d = hours[idx];
-      const row = document.createElement("div");
-      row.className = "hours-row" + (idx === todayIdx ? " today" : "");
-      row.innerHTML = `<span class="day">${d.label}</span><span class="time">${pad(d.open)} – ${pad(d.close)}</span>`;
-      list.appendChild(row);
-    });
-  }
-
   function getBAparts(){
     const fmt = new Intl.DateTimeFormat('en-US', {
       timeZone:'America/Argentina/Buenos_Aires',
@@ -724,7 +725,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
       statusEl.textContent = `Cerrado ahora · abre a las ${pad(today.open)}`;
       dotEl.style.background = "#D9705A";
     }
-    renderHours(day);
   }
 
   updateStatus();
